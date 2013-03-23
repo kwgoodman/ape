@@ -33,6 +33,46 @@ def pip(cmd, package, verbose=False):
                             executable="/bin/bash")
     proc.wait()
 
+def get_pkg_list():
+    pkg_list = [
+
+                # dev tools
+                'build-essential.apt',
+                'git.apt',
+                'gitg.apt',
+                'meld.apt',
+
+                # python
+                'python-dev.apt',
+                'python3.apt',
+                'python3-dev.apt',
+                'ipython.pip',
+
+                # unit tests
+                'nose.pip',
+                'virtualenv.pip',
+                'tox.pip',
+                'python-coverage.apt',
+
+                # misc
+                'cython.pip'
+                'python-matplotlib.apt',
+                'python-sphinx.apt',
+
+                # numpy/scipy
+                'gfortran.apt',
+                'libblas-dev.apt',
+                'libatlas-base-dev.apt',
+                'numpy.pip',
+                'scipy.pip',
+
+                # h5py
+                'libhdf5-serial-dev.apt',
+                'h5py.pip',
+
+                ]
+    return pkg_list
+
 if __name__ == "__main__":
     apt('install', 'gimp', verbose=True)
     pip('install', 'la', verbose=True)
