@@ -3,40 +3,6 @@
 import subprocess
 
 # ---------------------------------------------------------------------------
-# low-level apt and pip
-
-def apt(cmd, package, verbose=False):
-    "apt-get install or remove"
-    if cmd not in ('install', 'remove'):
-        raise ValueError("`cmd` must be 'install' or 'remove'")
-    apt_cmd = "apt-get %s -y %s" % (cmd, package)
-    if verbose:
-        stdout = None
-    else:
-        stdout = open("/dev/null", "w")
-    proc = subprocess.Popen(apt_cmd, shell=True, stdin=None,
-                            stdout=stdout, stderr=None,
-                            executable="/bin/bash")
-    proc.wait()
-
-def pip(cmd, package, verbose=False):
-    "pip install or remove"
-    if cmd == 'install':
-        pip_cmd = "pip install %s" % package
-    elif cmd == 'remove':    
-        pip_cmd = "pip uninstall -y %s" % package
-    else:
-        raise ValueError("`cmd` must be 'install' or 'remove'")
-    if verbose:
-        stdout = None
-    else:
-        stdout = open("/dev/null", "w")
-    proc = subprocess.Popen(pip_cmd, shell=True, stdin=None,
-                            stdout=stdout, stderr=None,
-                            executable="/bin/bash")
-    proc.wait()
-
-# ---------------------------------------------------------------------------
 # high-level install and remove functions
 
 def install(pkg_method, verbose=False):
@@ -56,6 +22,43 @@ def install_or_remove(cmd, pkg_method, verbose=False):
         pip(cmd, pkg, verbose)
     else:
         raise ValueError("`method` must be 'apt' or 'pip'")
+
+# ---------------------------------------------------------------------------
+# low-level apt and pip
+
+def apt(cmd, package, verbose=False):
+    "apt-get install or remove"
+    if cmd not in ('install', 'remove'):
+        raise ValueError("`cmd` must be 'install' or 'remove'")
+    apt_cmd = "apt-get %s -y %s" % (cmd, package)
+    shell_call(apt_cmd, verbose)
+
+def pip(cmd, package, verbose=False):
+    "pip install or remove"
+    if cmd == 'install':
+        pip_cmd = "pip install %s" % package
+    elif cmd == 'remove':    
+        pip_cmd = "pip uninstall -y %s" % package
+    else:
+        raise ValueError("`cmd` must be 'install' or 'remove'")
+    shell_call(pip_cmd, verbose)
+
+def shell_call(cmd, verbose):
+    if verbose:
+        stdout = None
+    else:
+        stdout = open("/dev/null", "w")
+    proc = subprocess.Popen(cmd, shell=True, stdin=None,
+                            stdout=stdout, stderr=None,
+                            executable="/bin/bash")
+    proc.wait()
+
+# ---------------------------------------------------------------------------
+# easy_install pip
+
+def easy_install_pip(verbose=False):
+    cmd = 'easy_install pip'
+    shell_call(cmd, verbose)
 
 # ---------------------------------------------------------------------------
 # package list to install
@@ -106,5 +109,6 @@ def get_pkg_list():
 if __name__ == "__main__":
     verbose = True
     pkg_list = get_pkg_list()
+    easy_install_pip(verbose)
     for pkg_method in pkg_list:
         install(pkg_method, verbose)
