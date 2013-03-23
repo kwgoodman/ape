@@ -2,6 +2,9 @@
 
 import subprocess
 
+# ---------------------------------------------------------------------------
+# low-level apt and pip
+
 def apt(cmd, package, verbose=False):
     "apt-get install or remove"
     if cmd not in ('install', 'remove'):
@@ -32,6 +35,30 @@ def pip(cmd, package, verbose=False):
                             stdout=stdout, stderr=None,
                             executable="/bin/bash")
     proc.wait()
+
+# ---------------------------------------------------------------------------
+# high-level install and remove functions
+
+def install(pkg_method, verbose=False):
+    "install x using apt or pip where pkg_method either 'x.apt' or 'x.pip'"
+    install_or_remove('install', pkg_method, verbose)
+
+def remove(pkg_method, verbose=False):
+    "remove x using apt or pip where pkg_method either 'x.apt' or 'x.pip'"
+    install_or_remove('install', pkg_method, verbose)
+
+def install_or_remove(cmd, pkg_method, verbose=False):
+    "install/remove x using apt/pip where pkg_method either 'x.apt' or 'x.pip'"
+    pkg, method = pkg_method.split('.')
+    if method == 'apt':
+        apt(cmd, pkg, verbose)
+    elif method == 'pip':
+        pip(cmd, pkg, verbose)
+    else:
+        raise ValueError("`method` must be 'apt' or 'pip'")
+
+# ---------------------------------------------------------------------------
+# package list to install
 
 def get_pkg_list():
     pkg_list = [
@@ -73,6 +100,11 @@ def get_pkg_list():
                 ]
     return pkg_list
 
+# ---------------------------------------------------------------------------
+# By default install
+
 if __name__ == "__main__":
-    apt('install', 'gimp', verbose=True)
-    pip('install', 'la', verbose=True)
+    verbose = True
+    pkg_list = get_pkg_list()
+    for pkg_method in pkg_list:
+        install(pkg_method, verbose)
