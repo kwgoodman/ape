@@ -6,10 +6,11 @@ import subprocess
 # default package list
 
 def get_pkg_list():
+    "Default package list; for apt-get uses ubuntu package names"
     pkg_list = [
 
                 # pip
-                'pip.eze',
+                'python-pip.apt',
 
                 # dev tools
                 'build-essential.apt',
@@ -29,17 +30,17 @@ def get_pkg_list():
                 'tox.pip',
                 'python-coverage.apt',
 
-                # misc
-                'cython.pip'
-                'python-matplotlib.apt',
-                'python-sphinx.apt',
-
                 # numpy/scipy
                 'gfortran.apt',
                 'libblas-dev.apt',
                 'libatlas-base-dev.apt',
                 'numpy.pip',
                 'scipy.pip',
+
+                # misc
+                'cython.pip',
+                'python-matplotlib.apt',
+                'python-sphinx.apt',
 
                 # h5py
                 'libhdf5-serial-dev.apt',
@@ -66,8 +67,6 @@ def install_or_remove(cmd, pkg_method, verbose=False):
         apt(cmd, pkg, verbose)
     elif method == 'pip':
         pip(cmd, pkg, verbose)
-    elif method == 'eze':
-        eze(cmd, pkg, verbose)
     else:
         raise ValueError("`method` must be 'apt' or 'pip'")
 
@@ -91,22 +90,12 @@ def pip(cmd, package, verbose=False):
         raise ValueError("`cmd` must be 'install' or 'remove'")
     shell_call(pip_cmd, verbose)
 
-def eze(cmd, package, verbose=False):
-    "easy_install or pip remove"
-    if cmd == 'install':
-        eze_cmd = "easy_install %s" % package
-    elif cmd == 'remove':    
-        eze_cmd = "pip uninstall -y %s" % package
-    else:
-        raise ValueError("`cmd` must be 'install' or 'remove'")
-    shell_call(eze_cmd, verbose)
-
 def shell_call(cmd, verbose):
     if verbose:
         stdout = None
         n = len(cmd)
         print('=' * n)
-        print('apt_cmd')
+        print(cmd)
         print('=' * n)
     else:
         stdout = open("/dev/null", "w")
