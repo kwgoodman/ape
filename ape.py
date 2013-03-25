@@ -104,6 +104,10 @@ def eze(cmd, package, verbose=False):
 def shell_call(cmd, verbose):
     if verbose:
         stdout = None
+        n = len(cmd)
+        print('=' * n)
+        print('apt_cmd')
+        print('=' * n)
     else:
         stdout = open("/dev/null", "w")
     proc = subprocess.Popen(cmd, shell=True, stdout=stdout,
