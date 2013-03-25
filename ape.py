@@ -72,7 +72,7 @@ def install_or_remove(cmd, pkg_method, verbose=False):
         raise ValueError("`method` must be 'apt' or 'pip'")
 
 # ---------------------------------------------------------------------------
-# low-level apt and pip
+# low-level install and remove functions
 
 def apt(cmd, package, verbose=False):
     "apt-get install or remove"
@@ -106,8 +106,7 @@ def shell_call(cmd, verbose):
         stdout = None
     else:
         stdout = open("/dev/null", "w")
-    proc = subprocess.Popen(cmd, shell=True, stdin=None,
-                            stdout=stdout, stderr=None,
+    proc = subprocess.Popen(cmd, shell=True, stdout=stdout,
                             executable="/bin/bash")
     proc.wait()
 
