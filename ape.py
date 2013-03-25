@@ -38,13 +38,22 @@ def get_pkg_list():
                 'scipy.pip',
 
                 # misc
-                'cython.pip',
+                # Note apt-get of matplotlib will pull
+                # in ubuntu's python-numpy
                 'python-matplotlib.apt',
+                'cython.pip',
                 'python-sphinx.apt',
 
                 # h5py
                 'libhdf5-serial-dev.apt',
                 'h5py.pip',
+
+                # non-development
+                'texlive-extra-utils.apt',
+                'latex-beamer.apt',
+                'gnucash.apt',
+                'revelation.apt',
+                'gvim.apt',
 
                 ]
     return pkg_list
