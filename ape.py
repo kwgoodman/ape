@@ -53,7 +53,7 @@ def get_pkg_list():
                 'latex-beamer.apt',
                 'gnucash.apt',
                 'revelation.apt',
-                'gvim.apt',
+                'vim-gnome.apt',
 
                 ]
     return pkg_list
