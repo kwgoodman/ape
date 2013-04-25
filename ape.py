@@ -54,6 +54,7 @@ def get_pkg_list():
                 'gnucash.apt',
                 'revelation.apt',
                 'vim-gnome.apt',
+                'gnome-search-tool.apt',
 
                 ]
     return pkg_list
