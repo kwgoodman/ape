@@ -17,6 +17,7 @@ def get_pkg_list():
                 'git.apt',
                 'gitg.apt',
                 'meld.apt',
+                'grin.pip',
 
                 # python
                 'python-dev.apt',
