@@ -18,7 +18,7 @@ def get_pkg_list():
                 'gitg.apt',
                 'meld.apt',
                 'grin.pip',
-                'pyflakes.pip',
+                'flake8.pip',
 
                 # python
                 'python-dev.apt',
