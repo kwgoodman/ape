@@ -57,6 +57,7 @@ def get_pkg_list():
                 'revelation.apt',
                 'vim-gnome.apt',
                 'gnome-search-tool.apt',
+                'workrave.apt',
 
                 ]
     return pkg_list
