@@ -25,6 +25,7 @@ def get_pkg_list():
                 'python3.apt',
                 'python3-dev.apt',
                 'ipython.pip',
+                'ipdb.pip',
 
                 # unit tests
                 'nose.pip',
