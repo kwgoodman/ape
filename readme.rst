@@ -11,4 +11,6 @@ usage
 
 To run ape::
 
-    $ python ape/ape.py
+    $ sudo python ape/ape.py
+
+The code is short, so read it before giving it root privileges with sudo.
