@@ -66,10 +66,12 @@ def get_pkg_list():
                 'numpy.pip',
                 'scipy.pip',
 
+                # matplotlib
+                'libfreetype6-dev.apt',
+                'libpng-dev.apt',
+                'matplotlib.pip',
+
                 # misc
-                # Note apt-get of matplotlib will pull
-                # in ubuntu's python-numpy
-                'python-matplotlib.apt',
                 'cython.pip',
                 'python-sphinx.apt',
 
