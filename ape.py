@@ -45,6 +45,7 @@ def get_pkg_list():
                 'grin.pip',
                 'flake8.pip',
                 'exuberant-ctags.apt',
+                'line_profiler.pip',
 
                 # python
                 'python-dev.apt',
