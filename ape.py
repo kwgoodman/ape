@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2013, Berkeley Analytics, LLC.
+# Copyright (c) 2013-2014, Berkeley Analytics, LLC.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -46,6 +46,7 @@ def get_pkg_list():
                 'flake8.pip',
                 'exuberant-ctags.apt',
                 'line_profiler.pip',
+                'htop.apt',
 
                 # python
                 'python-dev.apt',
