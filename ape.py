@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2013-2014, Berkeley Analytics, LLC.
+# Copyright (c) 2013-2015, Keith Goodman
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -44,9 +44,9 @@ def get_pkg_list():
                 'meld.apt',
                 'grin.pip',
                 'flake8.pip',
-                'exuberant-ctags.apt',
                 'line_profiler.pip',
                 'htop.apt',
+                'rxvt-unicode-256color.apt',
 
                 # python
                 'python-dev.apt',
@@ -80,15 +80,6 @@ def get_pkg_list():
                 # h5py
                 'libhdf5-serial-dev.apt',
                 'h5py.pip',
-
-                # non-development
-                'texlive-extra-utils.apt',
-                'latex-beamer.apt',
-                'gnucash.apt',
-                'revelation.apt',
-                'vim-gnome.apt',
-                'gnome-search-tool.apt',
-                'workrave.apt',
 
                 ]
     return pkg_list
